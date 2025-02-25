@@ -59,7 +59,7 @@ __decorate([
     __metadata("design:type", String)
 ], ProdutoEntity.prototype, "deletedAt", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => produto_imagem_entity_1.ProdutoImagemEntity, (produtoImageEntity) => produtoImageEntity.produto, { cascade: true, eager: true }),
+    (0, typeorm_1.OneToMany)(() => produto_imagem_entity_1.ProdutoImagemEntity, (produtoImageEntity) => produtoImageEntity.produto, { cascade: true, eager: false }),
     __metadata("design:type", Array)
 ], ProdutoEntity.prototype, "imagens", void 0);
 __decorate([

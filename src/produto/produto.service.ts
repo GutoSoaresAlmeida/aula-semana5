@@ -4,16 +4,28 @@ import { ListaProdutoDTO } from './dto/ListaProduto.dto';
 import { ProdutoEntity } from './produto.entity';
 import { Repository } from 'typeorm';
 import { AtualizaProdutoDTO } from './dto/AtualizaProduto.dto';
+import { FornecedorEntity } from 'src/Fornecedor/fornecedor.entity';
 
 @Injectable()
 export class ProdutoService {
   constructor(
     @InjectRepository(ProdutoEntity)
     private readonly produtoRepository: Repository<ProdutoEntity>,
+
+    @InjectRepository(FornecedorEntity)
+    private readonly fornecedorRepository: Repository<FornecedorEntity>, 
   ) {}
 
-  async criaProduto(produtoEntity: ProdutoEntity) {
-    await this.produtoRepository.save(produtoEntity);
+  async criaProduto(produtoEntity: ProdutoEntity, fornecedorId: string) {
+    const fornecedor = await this.fornecedorRepository.findOneBy({ id: fornecedorId });
+
+    if (!fornecedor) {
+      throw new Error('Fornecedor não encontrado');
+    }
+
+    produtoEntity.fornecedor = fornecedor;
+
+    return this.produtoRepository.save(produtoEntity);
   }
 
   async listProdutos() {

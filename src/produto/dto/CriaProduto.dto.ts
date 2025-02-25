@@ -44,6 +44,9 @@ export class CriaProdutoDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido' })
   usuarioId: string;
 
+  @IsUUID(undefined, { message: 'ID de fornecedor inválido' })
+  fornecedorId: string; // <-- Novo campo para o ID do fornecedor
+
   @IsString()
   @IsNotEmpty({ message: 'Nome do produto não pode ser vazio' })
   nome: string;
@@ -79,3 +82,4 @@ export class CriaProdutoDTO {
   @IsNotEmpty({ message: 'Categoria do produto não pode ser vazia' })
   categoria: string;
 }
+

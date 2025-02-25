@@ -32,7 +32,7 @@ export class ProdutoController {
     produto.caracteristicas = dadosProduto.caracteristicas;
     produto.imagens = dadosProduto.imagens;
 
-    const produtoCadastrado = this.produtoService.criaProduto(produto);
+    const produtoCadastrado = await this.produtoService.criaProduto(produto, dadosProduto.fornecedorId);
     return produtoCadastrado;
   }
 

@@ -45,6 +45,10 @@ __decorate([
     __metadata("design:type", String)
 ], CriaProdutoDTO.prototype, "usuarioId", void 0);
 __decorate([
+    (0, class_validator_1.IsUUID)(undefined, { message: 'ID de fornecedor inválido' }),
+    __metadata("design:type", String)
+], CriaProdutoDTO.prototype, "fornecedorId", void 0);
+__decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'Nome do produto não pode ser vazio' }),
     __metadata("design:type", String)

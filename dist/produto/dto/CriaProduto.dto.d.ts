@@ -13,6 +13,7 @@ export declare class ImagemProdutoDTO {
 }
 export declare class CriaProdutoDTO {
     usuarioId: string;
+    fornecedorId: string;
     nome: string;
     valor: number;
     quantidade: number;

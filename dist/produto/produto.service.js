@@ -18,12 +18,19 @@ const typeorm_1 = require("@nestjs/typeorm");
 const ListaProduto_dto_1 = require("./dto/ListaProduto.dto");
 const produto_entity_1 = require("./produto.entity");
 const typeorm_2 = require("typeorm");
+const fornecedor_entity_1 = require("src/Fornecedor/fornecedor.entity");
 let ProdutoService = class ProdutoService {
-    constructor(produtoRepository) {
+    constructor(produtoRepository, fornecedorRepository) {
         this.produtoRepository = produtoRepository;
+        this.fornecedorRepository = fornecedorRepository;
     }
-    async criaProduto(produtoEntity) {
-        await this.produtoRepository.save(produtoEntity);
+    async criaProduto(produtoEntity, fornecedorId) {
+        const fornecedor = await this.fornecedorRepository.findOneBy({ id: fornecedorId });
+        if (!fornecedor) {
+            throw new Error('Fornecedor não encontrado');
+        }
+        produtoEntity.fornecedor = fornecedor;
+        return this.produtoRepository.save(produtoEntity);
     }
     async listProdutos() {
         const produtosSalvos = await this.produtoRepository.find({
@@ -48,6 +55,8 @@ exports.ProdutoService = ProdutoService;
 exports.ProdutoService = ProdutoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(produto_entity_1.ProdutoEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(fornecedor_entity_1.FornecedorEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], ProdutoService);
 //# sourceMappingURL=produto.service.js.map
