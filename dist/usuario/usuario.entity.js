@@ -13,6 +13,7 @@ exports.UsuarioEntity = void 0;
 const typeorm_1 = require("typeorm");
 let UsuarioEntity = class UsuarioEntity {
 };
+exports.UsuarioEntity = UsuarioEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
@@ -41,8 +42,7 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'deleted_at' }),
     __metadata("design:type", String)
 ], UsuarioEntity.prototype, "deletedAt", void 0);
-UsuarioEntity = __decorate([
+exports.UsuarioEntity = UsuarioEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'usuarios' })
 ], UsuarioEntity);
-exports.UsuarioEntity = UsuarioEntity;
 //# sourceMappingURL=usuario.entity.js.map

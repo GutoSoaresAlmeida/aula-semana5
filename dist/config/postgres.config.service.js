@@ -29,9 +29,9 @@ let PostgresConfigService = class PostgresConfigService {
         };
     }
 };
-PostgresConfigService = __decorate([
+exports.PostgresConfigService = PostgresConfigService;
+exports.PostgresConfigService = PostgresConfigService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [config_1.ConfigService])
 ], PostgresConfigService);
-exports.PostgresConfigService = PostgresConfigService;
 //# sourceMappingURL=postgres.config.service.js.map

@@ -15,12 +15,12 @@ const usuario_service_1 = require("./usuario.service");
 const usuario_entity_1 = require("./usuario.entity");
 let UsuarioModule = class UsuarioModule {
 };
-UsuarioModule = __decorate([
+exports.UsuarioModule = UsuarioModule;
+exports.UsuarioModule = UsuarioModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity])],
         controllers: [usuario_controller_1.UsuarioController],
         providers: [usuario_service_1.UsuarioService, email_eh_unico_validator_1.EmailEhUnicoValidator],
     })
 ], UsuarioModule);
-exports.UsuarioModule = UsuarioModule;
 //# sourceMappingURL=usuario.module.js.map

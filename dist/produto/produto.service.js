@@ -44,10 +44,10 @@ let ProdutoService = class ProdutoService {
         await this.produtoRepository.delete(id);
     }
 };
-ProdutoService = __decorate([
+exports.ProdutoService = ProdutoService;
+exports.ProdutoService = ProdutoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(produto_entity_1.ProdutoEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ProdutoService);
-exports.ProdutoService = ProdutoService;
 //# sourceMappingURL=produto.service.js.map

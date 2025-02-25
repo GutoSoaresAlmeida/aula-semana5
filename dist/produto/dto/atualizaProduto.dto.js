@@ -15,6 +15,7 @@ const class_validator_1 = require("class-validator");
 const CriaProduto_dto_1 = require("./CriaProduto.dto");
 class AtualizaProdutoDTO {
 }
+exports.AtualizaProdutoDTO = AtualizaProdutoDTO;
 __decorate([
     (0, class_validator_1.IsUUID)(undefined, { message: 'ID de usuário inválido' }),
     __metadata("design:type", String)
@@ -65,5 +66,4 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AtualizaProdutoDTO.prototype, "categoria", void 0);
-exports.AtualizaProdutoDTO = AtualizaProdutoDTO;
 //# sourceMappingURL=atualizaProduto.dto.js.map

@@ -13,8 +13,11 @@ exports.ProdutoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const produto_imagem_entity_1 = require("./produto-imagem.entity");
 const produto_caracteristica_entity_1 = require("./produto-caracteristica.entity");
+const typeorm_2 = require("typeorm");
+const fornecedor_entity_1 = require("src/Fornecedor/fornecedor.entity");
 let ProdutoEntity = class ProdutoEntity {
 };
+exports.ProdutoEntity = ProdutoEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
@@ -61,10 +64,10 @@ __decorate([
 ], ProdutoEntity.prototype, "imagens", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => produto_caracteristica_entity_1.ProdutoCaracteristicaEntity, (produtoCaracteristicaEntity) => produtoCaracteristicaEntity.produto, { cascade: true, eager: true }),
-    __metadata("design:type", Array)
-], ProdutoEntity.prototype, "caracteristicas", void 0);
-ProdutoEntity = __decorate([
+    (0, typeorm_2.ManyToOne)(() => fornecedor_entity_1.FornecedorEntity, (fornecedor) => fornecedor.produtos, { nullable: false }),
+    __metadata("design:type", fornecedor_entity_1.FornecedorEntity)
+], ProdutoEntity.prototype, "fornecedor", void 0);
+exports.ProdutoEntity = ProdutoEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'produtos' })
 ], ProdutoEntity);
-exports.ProdutoEntity = ProdutoEntity;
 //# sourceMappingURL=produto.entity.js.map
