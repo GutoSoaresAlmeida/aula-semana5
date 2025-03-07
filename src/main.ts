@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './config/httpExceptionFilter';
+import { HttpExceptionFilter } from './Filtro/httpExceptionFilter';
 
 //
 async function bootstrap() {
