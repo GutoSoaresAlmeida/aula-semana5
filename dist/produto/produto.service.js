@@ -18,7 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const ListaProduto_dto_1 = require("./dto/ListaProduto.dto");
 const produto_entity_1 = require("./produto.entity");
 const typeorm_2 = require("typeorm");
-const fornecedor_entity_1 = require("src/Fornecedor/fornecedor.entity");
+const fornecedor_entity_1 = require("../Fornecedor/fornecedor.entity");
 let ProdutoService = class ProdutoService {
     constructor(produtoRepository, fornecedorRepository) {
         this.produtoRepository = produtoRepository;
@@ -51,12 +51,12 @@ let ProdutoService = class ProdutoService {
         await this.produtoRepository.delete(id);
     }
 };
-exports.ProdutoService = ProdutoService;
-exports.ProdutoService = ProdutoService = __decorate([
+ProdutoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(produto_entity_1.ProdutoEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(fornecedor_entity_1.FornecedorEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository])
 ], ProdutoService);
+exports.ProdutoService = ProdutoService;
 //# sourceMappingURL=produto.service.js.map

@@ -55,7 +55,6 @@ let ProdutoController = class ProdutoController {
         };
     }
 };
-exports.ProdutoController = ProdutoController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -84,8 +83,9 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "remove", null);
-exports.ProdutoController = ProdutoController = __decorate([
+ProdutoController = __decorate([
     (0, common_1.Controller)('produtos'),
     __metadata("design:paramtypes", [produto_service_1.ProdutoService])
 ], ProdutoController);
+exports.ProdutoController = ProdutoController;
 //# sourceMappingURL=produto.controller.js.map

@@ -14,7 +14,6 @@ const typeorm_1 = require("typeorm");
 const produto_entity_1 = require("./produto.entity");
 let ProdutoImagemEntity = class ProdutoImagemEntity {
 };
-exports.ProdutoImagemEntity = ProdutoImagemEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
@@ -35,7 +34,8 @@ __decorate([
     }),
     __metadata("design:type", produto_entity_1.ProdutoEntity)
 ], ProdutoImagemEntity.prototype, "produto", void 0);
-exports.ProdutoImagemEntity = ProdutoImagemEntity = __decorate([
+ProdutoImagemEntity = __decorate([
     (0, typeorm_1.Entity)('produto_imagens')
 ], ProdutoImagemEntity);
+exports.ProdutoImagemEntity = ProdutoImagemEntity;
 //# sourceMappingURL=produto-imagem.entity.js.map

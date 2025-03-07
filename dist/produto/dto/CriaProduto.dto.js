@@ -14,7 +14,6 @@ const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 class CaracteristicaProdutoDTO {
 }
-exports.CaracteristicaProdutoDTO = CaracteristicaProdutoDTO;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'Nome da cadasterística não pode ser vazio' }),
@@ -25,9 +24,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Descrição da característica não pode ser vazio' }),
     __metadata("design:type", String)
 ], CaracteristicaProdutoDTO.prototype, "descricao", void 0);
+exports.CaracteristicaProdutoDTO = CaracteristicaProdutoDTO;
 class ImagemProdutoDTO {
 }
-exports.ImagemProdutoDTO = ImagemProdutoDTO;
 __decorate([
     (0, class_validator_1.IsUrl)({ message: 'URL para imagem inválida' }),
     __metadata("design:type", String)
@@ -37,9 +36,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Descrição da imagem não pode ser vazia' }),
     __metadata("design:type", String)
 ], ImagemProdutoDTO.prototype, "descricao", void 0);
+exports.ImagemProdutoDTO = ImagemProdutoDTO;
 class CriaProdutoDTO {
 }
-exports.CriaProdutoDTO = CriaProdutoDTO;
 __decorate([
     (0, class_validator_1.IsUUID)(undefined, { message: 'ID de usuário inválido' }),
     __metadata("design:type", String)
@@ -90,4 +89,5 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Categoria do produto não pode ser vazia' }),
     __metadata("design:type", String)
 ], CriaProdutoDTO.prototype, "categoria", void 0);
+exports.CriaProdutoDTO = CriaProdutoDTO;
 //# sourceMappingURL=CriaProduto.dto.js.map
