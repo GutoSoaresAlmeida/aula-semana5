@@ -15,38 +15,77 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
 const ListaUsuario_dto_1 = require("./dto/ListaUsuario.dto");
 const usuario_entity_1 = require("./usuario.entity");
-const typeorm_2 = require("typeorm");
+const roleEntity_1 = require("../role/roleEntity");
 let UsuarioService = class UsuarioService {
-    constructor(usuarioRepository) {
+    constructor(usuarioRepository, roleRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.roleRepository = roleRepository;
+    }
+    async atribuirRole(usuarioId, roleId) {
+        const usuario = await this.usuarioRepository.findOne({
+            where: { id: usuarioId },
+            relations: ['roles'],
+        });
+        if (!usuario) {
+            throw new common_1.NotFoundException(`Usuário com ID ${usuarioId} não encontrado.`);
+        }
+        const role = await this.roleRepository.findOne({ where: { id: roleId } });
+        if (!role) {
+            throw new common_1.NotFoundException(`Papel com ID ${roleId} não encontrado.`);
+        }
+        usuario.roles.push(role);
+        await this.usuarioRepository.save(usuario);
     }
     async criaUsuario(usuarioEntity) {
-        await this.usuarioRepository.save(usuarioEntity);
+        const usuarioExistente = await this.buscaPorEmail(usuarioEntity.email);
+        if (usuarioExistente) {
+            throw new common_1.ConflictException('Este e-mail já está em uso.');
+        }
+        try {
+            await this.usuarioRepository.save(usuarioEntity);
+        }
+        catch (error) {
+            if (error.code === '23505') {
+                throw new common_1.ConflictException('E-mail já cadastrado.');
+            }
+            throw new common_1.InternalServerErrorException('Erro ao criar usuário. Tente novamente mais tarde.');
+        }
     }
     async listUsuarios() {
         const usuariosSalvos = await this.usuarioRepository.find();
-        const usuariosLista = usuariosSalvos.map((usuario) => new ListaUsuario_dto_1.ListaUsuarioDTO(usuario.id, usuario.nome));
-        return usuariosLista;
+        return usuariosSalvos.map(usuario => new ListaUsuario_dto_1.ListaUsuarioDTO(usuario.id, usuario.nome));
     }
     async buscaPorEmail(email) {
-        const checkEmail = await this.usuarioRepository.findOne({
-            where: { email },
-        });
-        return checkEmail;
+        const usuario = await this.usuarioRepository.findOne({ where: { email } });
+        if (!usuario) {
+            throw new common_1.NotFoundException(`Usuário com e-mail ${email} não encontrado.`);
+        }
+        return usuario;
     }
     async atualizaUsuario(id, novosDados) {
+        const usuarioExistente = await this.usuarioRepository.findOne({ where: { id } });
+        if (!usuarioExistente) {
+            throw new common_1.BadRequestException(`Usuário com ID ${id} não encontrado.`);
+        }
         await this.usuarioRepository.update(id, novosDados);
     }
     async deletaUsuario(id) {
+        const usuarioExistente = await this.usuarioRepository.findOne({ where: { id } });
+        if (!usuarioExistente) {
+            throw new common_1.NotFoundException(`Usuário com ID ${id} não encontrado.`);
+        }
         await this.usuarioRepository.delete(id);
     }
 };
-exports.UsuarioService = UsuarioService;
-exports.UsuarioService = UsuarioService = __decorate([
+UsuarioService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(usuario_entity_1.UsuarioEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(roleEntity_1.RoleEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UsuarioService);
+exports.UsuarioService = UsuarioService;
 //# sourceMappingURL=usuario.service.js.map

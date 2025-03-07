@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioEntity = void 0;
 const typeorm_1 = require("typeorm");
+const roleEntity_1 = require("../role/roleEntity");
 let UsuarioEntity = class UsuarioEntity {
 };
-exports.UsuarioEntity = UsuarioEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], UsuarioEntity.prototype, "nome", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'email', length: 70, nullable: false }),
+    (0, typeorm_1.Column)({ name: 'email', length: 70, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], UsuarioEntity.prototype, "email", void 0);
 __decorate([
@@ -42,7 +42,17 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'deleted_at' }),
     __metadata("design:type", String)
 ], UsuarioEntity.prototype, "deletedAt", void 0);
-exports.UsuarioEntity = UsuarioEntity = __decorate([
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => roleEntity_1.RoleEntity, role => role.usuarios),
+    (0, typeorm_1.JoinTable)({
+        name: 'usuario_roles',
+        joinColumn: { name: 'usuario_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id' },
+    }),
+    __metadata("design:type", Array)
+], UsuarioEntity.prototype, "roles", void 0);
+UsuarioEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'usuarios' })
 ], UsuarioEntity);
+exports.UsuarioEntity = UsuarioEntity;
 //# sourceMappingURL=usuario.entity.js.map

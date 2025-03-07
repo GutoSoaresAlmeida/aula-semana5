@@ -7,15 +7,14 @@ export declare class UsuarioController {
     constructor(usuarioService: UsuarioService);
     criaUsuario(dadosDoUsuario: CriaUsuarioDTO): Promise<{
         usuario: ListaUsuarioDTO;
-        messagem: string;
+        mensagem: string;
     }>;
     listUsuarios(): Promise<ListaUsuarioDTO[]>;
     atualizaUsuario(id: string, novosDados: AtualizaUsuarioDTO): Promise<{
         usuario: void;
-        messagem: string;
+        mensagem: string;
     }>;
     removeUsuario(id: string): Promise<{
-        usuario: void;
-        messagem: string;
+        mensagem: string;
     }>;
 }

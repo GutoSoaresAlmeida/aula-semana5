@@ -9,18 +9,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const usuario_controller_1 = require("./usuario.controller");
-const email_eh_unico_validator_1 = require("./validacao/email-eh-unico.validator");
-const usuario_service_1 = require("./usuario.service");
 const usuario_entity_1 = require("./usuario.entity");
+const usuario_service_1 = require("./usuario.service");
+const usuario_controller_1 = require("./usuario.controller");
+const role_module_1 = require("../role/role.module");
 let UsuarioModule = class UsuarioModule {
 };
-exports.UsuarioModule = UsuarioModule;
-exports.UsuarioModule = UsuarioModule = __decorate([
+UsuarioModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity]),
+            role_module_1.RoleModule,
+        ],
+        providers: [usuario_service_1.UsuarioService],
         controllers: [usuario_controller_1.UsuarioController],
-        providers: [usuario_service_1.UsuarioService, email_eh_unico_validator_1.EmailEhUnicoValidator],
+        exports: [usuario_service_1.UsuarioService],
     })
 ], UsuarioModule);
+exports.UsuarioModule = UsuarioModule;
 //# sourceMappingURL=usuario.module.js.map

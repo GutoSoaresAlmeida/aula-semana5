@@ -14,7 +14,6 @@ const class_validator_1 = require("class-validator");
 const email_eh_unico_validator_1 = require("../validacao/email-eh-unico.validator");
 class AtualizaUsuarioDTO {
 }
-exports.AtualizaUsuarioDTO = AtualizaUsuarioDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'O nome não pode ser vazio' }),
     (0, class_validator_1.IsOptional)(),
@@ -31,4 +30,5 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AtualizaUsuarioDTO.prototype, "senha", void 0);
+exports.AtualizaUsuarioDTO = AtualizaUsuarioDTO;
 //# sourceMappingURL=AtualizaUsuario.dto.js.map

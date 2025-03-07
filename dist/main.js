@@ -4,8 +4,10 @@ const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const class_validator_1 = require("class-validator");
 const app_module_1 = require("./app.module");
+const httpExceptionFilter_1 = require("./config/httpExceptionFilter");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.useGlobalFilters(new httpExceptionFilter_1.HttpExceptionFilter());
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true,
         whitelist: true,

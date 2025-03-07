@@ -14,7 +14,6 @@ const class_validator_1 = require("class-validator");
 const email_eh_unico_validator_1 = require("../validacao/email-eh-unico.validator");
 class CriaUsuarioDTO {
 }
-exports.CriaUsuarioDTO = CriaUsuarioDTO;
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'O nome não pode ser vazio' }),
     __metadata("design:type", String)
@@ -28,4 +27,5 @@ __decorate([
     (0, class_validator_1.MinLength)(6, { message: 'A senha precisa ter pelo menos 6 caracteres' }),
     __metadata("design:type", String)
 ], CriaUsuarioDTO.prototype, "senha", void 0);
+exports.CriaUsuarioDTO = CriaUsuarioDTO;
 //# sourceMappingURL=CriaUsuario.dto.js.map

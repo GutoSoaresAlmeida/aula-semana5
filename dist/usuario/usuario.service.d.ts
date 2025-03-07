@@ -1,10 +1,13 @@
+import { Repository } from 'typeorm';
 import { ListaUsuarioDTO } from './dto/ListaUsuario.dto';
 import { UsuarioEntity } from './usuario.entity';
-import { Repository } from 'typeorm';
 import { AtualizaUsuarioDTO } from './dto/AtualizaUsuario.dto';
+import { RoleEntity } from 'src/role/roleEntity';
 export declare class UsuarioService {
     private readonly usuarioRepository;
-    constructor(usuarioRepository: Repository<UsuarioEntity>);
+    private readonly roleRepository;
+    constructor(usuarioRepository: Repository<UsuarioEntity>, roleRepository: Repository<RoleEntity>);
+    atribuirRole(usuarioId: string, roleId: string): Promise<void>;
     criaUsuario(usuarioEntity: UsuarioEntity): Promise<void>;
     listUsuarios(): Promise<ListaUsuarioDTO[]>;
     buscaPorEmail(email: string): Promise<UsuarioEntity>;
