@@ -52,6 +52,7 @@ export class UsuarioService {
       throw new ConflictException('Este e-mail já está em uso.');
     }
 
+    
     try {
       await this.usuarioRepository.save(usuarioEntity);
     } catch (error) {
