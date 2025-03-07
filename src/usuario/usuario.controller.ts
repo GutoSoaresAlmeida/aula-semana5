@@ -16,29 +16,37 @@ import { UsuarioService } from './usuario.service';
 
 @Controller('/usuarios')
 export class UsuarioController {
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService) { }
 
   @Post()
   async criaUsuario(@Body() dadosDoUsuario: CriaUsuarioDTO) {
-    const usuarioEntity = new UsuarioEntity();
-    usuarioEntity.email = dadosDoUsuario.email;
-    usuarioEntity.senha = dadosDoUsuario.senha;
-    usuarioEntity.nome = dadosDoUsuario.nome;
-    usuarioEntity.id = uuid();
+    try {
+      const usuarioEntity = new UsuarioEntity();
+      usuarioEntity.email = dadosDoUsuario.email;
+      usuarioEntity.senha = dadosDoUsuario.senha;
+      usuarioEntity.nome = dadosDoUsuario.nome;
+      usuarioEntity.id = uuid();
 
-    this.usuarioService.criaUsuario(usuarioEntity);
+      await this.usuarioService.criaUsuario(usuarioEntity);
 
-    return {
-      usuario: new ListaUsuarioDTO(usuarioEntity.id, usuarioEntity.nome),
-      messagem: 'usuário criado com sucesso',
-    };
+      return {
+        usuario: new ListaUsuarioDTO(usuarioEntity.id, usuarioEntity.nome),
+        mensagem: 'Usuário criado com sucesso',
+      };
+    } catch (error) {
+      console.error('Erro ao criar usuário:', error);
+      throw error;
+    }
   }
 
   @Get()
   async listUsuarios() {
-    const usuariosSalvos = await this.usuarioService.listUsuarios();
-
-    return usuariosSalvos;
+    try {
+      return await this.usuarioService.listUsuarios();
+    } catch (error) {
+      console.error('Erro ao listar usuários:', error);
+      throw error;
+    }
   }
 
   @Put('/:id')
@@ -46,24 +54,28 @@ export class UsuarioController {
     @Param('id') id: string,
     @Body() novosDados: AtualizaUsuarioDTO,
   ) {
-    const usuarioAtualizado = await this.usuarioService.atualizaUsuario(
-      id,
-      novosDados,
-    );
-
-    return {
-      usuario: usuarioAtualizado,
-      messagem: 'usuário atualizado com sucesso',
-    };
+    try {
+      const usuarioAtualizado = await this.usuarioService.atualizaUsuario(id, novosDados);
+      return {
+        usuario: usuarioAtualizado,
+        mensagem: 'Usuário atualizado com sucesso',
+      };
+    } catch (error) {
+      console.error(`Erro atualizando usuário ${id}:`, error);
+      throw error;
+    }
   }
 
   @Delete('/:id')
   async removeUsuario(@Param('id') id: string) {
-    const usuarioRemovido = await this.usuarioService.deletaUsuario(id);
-
-    return {
-      usuario: usuarioRemovido,
-      messagem: 'usuário removido com suceso',
-    };
+    try {
+      await this.usuarioService.deletaUsuario(id);
+      return {
+        mensagem: 'Usuário excluido com sucesso',
+      };
+    } catch (error) {
+      console.error(`Erro ao excluir usuário ${id}:`, error);
+      throw error;
+    }
   }
 }

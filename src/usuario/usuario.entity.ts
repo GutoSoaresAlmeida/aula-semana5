@@ -5,7 +5,10 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
+import { RoleEntity } from 'src/role/roleEntity';
 
 @Entity({ name: 'usuarios' })
 export class UsuarioEntity {
@@ -15,7 +18,7 @@ export class UsuarioEntity {
   @Column({ name: 'nome', length: 100, nullable: false })
   nome: string;
 
-  @Column({ name: 'email', length: 70, nullable: false })
+  @Column({ name: 'email', length: 70, nullable: false, unique: true })
   email: string;
 
   @Column({ name: 'senha', length: 255, nullable: false })
@@ -29,4 +32,12 @@ export class UsuarioEntity {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
+
+  @ManyToMany(() => RoleEntity, role => role.usuarios)
+  @JoinTable({
+    name: 'usuario_roles', // Nome da tabela de junção
+    joinColumn: { name: 'usuario_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id' },
+  })
+  roles: RoleEntity[];
 }
