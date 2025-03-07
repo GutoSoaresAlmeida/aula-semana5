@@ -20,7 +20,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
             status = exception.getStatus();
             const responseData = exception.getResponse();
 
-            // Se responseData for um objeto, extraímos a mensagem; caso contrário, usamos diretamente
             if (typeof responseData === 'object' && responseData !== null) {
                 message = (responseData as any).message || JSON.stringify(responseData);
             } else {

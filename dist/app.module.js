@@ -10,6 +10,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
+const role_module_1 = require("./role/role.module");
 const produto_module_1 = require("./produto/produto.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 const postgres_config_service_1 = require("./config/postgres.config.service");
@@ -20,6 +21,7 @@ AppModule = __decorate([
         imports: [
             usuario_module_1.UsuarioModule,
             produto_module_1.ProdutoModule,
+            role_module_1.RoleModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             }),

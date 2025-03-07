@@ -8,7 +8,7 @@ export class RoleController {
     @Post()
     async criarRole(@Body('nome') nome: string) {
         const role = await this.roleService.criarRole(nome);
-        return { role, mensagem: 'Papel criado com sucesso.' };
+        return { role, mensagem: 'Perfil criado com sucesso.' };
     }
 
     @Get()

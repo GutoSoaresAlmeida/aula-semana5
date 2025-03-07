@@ -35,7 +35,7 @@ export class UsuarioEntity {
 
   @ManyToMany(() => RoleEntity, role => role.usuarios)
   @JoinTable({
-    name: 'usuario_roles', // Nome da tabela de junção
+    name: 'usuario_roles', 
     joinColumn: { name: 'usuario_id', referencedColumnName: 'id' },
     inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id' },
   })
