@@ -11,7 +11,7 @@ import { ListaUsuarioDTO } from './dto/ListaUsuario.dto';
 import { UsuarioEntity } from './usuario.entity';
 import { AtualizaUsuarioDTO } from './dto/AtualizaUsuario.dto';
 import { RoleEntity } from 'src/role/roleEntity';
-
+//teste
 @Injectable()
 export class UsuarioService {
   constructor(
