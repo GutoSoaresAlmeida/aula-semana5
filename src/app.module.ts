@@ -21,7 +21,7 @@ import { PostgresConfigService } from './config/postgres.config.service';
     CacheModule.registerAsync({
       isGlobal: true,
       useFactory: () => ({
-       // store: redisStore,  
+        store: redisStore,  
         host: 'localhost',   
         port: 6379,          
         ttl: 10 * 1000,      // Tempo de expiração do cache
