@@ -9,10 +9,10 @@ export declare class ProdutoController {
     listaTodos(): Promise<import("./dto/ListaProduto.dto").ListaProdutoDTO[]>;
     atualiza(id: string, dadosProduto: AtualizaProdutoDTO): Promise<{
         mensagem: string;
-        produto: void;
+        produto: ProdutoEntity;
     }>;
     remove(id: string): Promise<{
         mensagem: string;
-        produto: void;
+        produto: ProdutoEntity;
     }>;
 }

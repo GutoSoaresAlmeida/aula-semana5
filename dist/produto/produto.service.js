@@ -15,9 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProdutoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
 const ListaProduto_dto_1 = require("./dto/ListaProduto.dto");
 const produto_entity_1 = require("./produto.entity");
-const typeorm_2 = require("typeorm");
 const fornecedor_entity_1 = require("../Fornecedor/fornecedor.entity");
 let ProdutoService = class ProdutoService {
     constructor(produtoRepository, fornecedorRepository) {
@@ -39,16 +39,37 @@ let ProdutoService = class ProdutoService {
                 caracteristicas: true,
             },
         });
-        const produtosLista = produtosSalvos.map((produto) => new ListaProduto_dto_1.ListaProdutoDTO(produto.id, produto.nome, produto.caracteristicas, produto.imagens));
-        return produtosLista;
+        return produtosSalvos.map((produto) => new ListaProduto_dto_1.ListaProdutoDTO(produto.id, produto.nome, produto.caracteristicas, produto.imagens));
+    }
+    async listProdutoPorId(id) {
+        const produto = await this.produtoRepository.findOne({
+            where: { id },
+            relations: {
+                imagens: true,
+                caracteristicas: true,
+            },
+        });
+        if (!produto) {
+            throw new Error('Produto não encontrado');
+        }
+        return new ListaProduto_dto_1.ListaProdutoDTO(produto.id, produto.nome, produto.caracteristicas, produto.imagens);
     }
     async atualizaProduto(id, novosDados) {
         const entityName = await this.produtoRepository.findOneBy({ id });
+        if (!entityName) {
+            throw new Error('Produto não encontrado');
+        }
         Object.assign(entityName, novosDados);
         await this.produtoRepository.save(entityName);
+        return entityName;
     }
     async deletaProduto(id) {
+        const produto = await this.produtoRepository.findOneBy({ id });
+        if (!produto) {
+            throw new Error('Produto não encontrado');
+        }
         await this.produtoRepository.delete(id);
+        return produto;
     }
 };
 ProdutoService = __decorate([

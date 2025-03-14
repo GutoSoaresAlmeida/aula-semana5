@@ -6,7 +6,9 @@ import {
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 
 import { AtualizaProdutoDTO } from './dto/atualizaProduto.dto';
@@ -16,7 +18,7 @@ import { ProdutoService } from './produto.service';
 
 @Controller('produtos')
 export class ProdutoController {
-  constructor(private readonly produtoService: ProdutoService) {}
+  constructor(private readonly produtoService: ProdutoService) { }
 
   @Post()
   async criaNovo(@Body() dadosProduto: CriaProdutoDTO) {
@@ -32,15 +34,25 @@ export class ProdutoController {
     produto.caracteristicas = dadosProduto.caracteristicas;
     produto.imagens = dadosProduto.imagens;
 
-    const produtoCadastrado = await this.produtoService.criaProduto(produto, dadosProduto.fornecedorId);
+    const produtoCadastrado = await this.produtoService.criaProduto(
+      produto,
+      dadosProduto.fornecedorId,
+    );
     return produtoCadastrado;
   }
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async listaTodos() {
     return this.produtoService.listProdutos();
   }
 
+  /*@Get('/:id')
+  @UseInterceptors(CacheInterceptor)
+  async listaPorId(@Param('id') id: string) {
+    return this.produtoService.listProdutoPorId(id);
+  }
+*/
   @Put('/:id')
   async atualiza(
     @Param('id') id: string,
@@ -52,7 +64,7 @@ export class ProdutoController {
     );
 
     return {
-      mensagem: 'produto atualizado com sucesso',
+      mensagem: 'Produto atualizado com sucesso',
       produto: produtoAlterado,
     };
   }
@@ -62,7 +74,7 @@ export class ProdutoController {
     const produtoRemovido = await this.produtoService.deletaProduto(id);
 
     return {
-      mensagem: 'produto removido com sucesso',
+      mensagem: 'Produto removido com sucesso',
       produto: produtoRemovido,
     };
   }

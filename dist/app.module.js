@@ -10,6 +10,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
+const redisStore = require("cache-manager-redis-store");
 const produto_module_1 = require("./produto/produto.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 const postgres_config_service_1 = require("./config/postgres.config.service");
@@ -26,6 +27,13 @@ AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 useClass: postgres_config_service_1.PostgresConfigService,
                 inject: [postgres_config_service_1.PostgresConfigService],
+            }),
+            common_1.CacheModule.register({
+                isGlobal: true,
+                store: redisStore,
+                host: 'localhost',
+                port: 6379,
+                ttl: 10 * 1000,
             }),
         ],
     })
