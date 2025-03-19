@@ -22,12 +22,12 @@ let EmailEhUnicoValidator = class EmailEhUnicoValidator {
         return !usuarioComEmailExiste;
     }
 };
-EmailEhUnicoValidator = __decorate([
+exports.EmailEhUnicoValidator = EmailEhUnicoValidator;
+exports.EmailEhUnicoValidator = EmailEhUnicoValidator = __decorate([
     (0, common_1.Injectable)(),
     (0, class_validator_1.ValidatorConstraint)({ async: true }),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], EmailEhUnicoValidator);
-exports.EmailEhUnicoValidator = EmailEhUnicoValidator;
 const EmailEhUnico = (opcoesDeValidacao) => {
     return (objeto, propriedade) => {
         (0, class_validator_1.registerDecorator)({

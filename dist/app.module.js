@@ -8,15 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const core_1 = require("@nestjs/core");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
-const redisStore = require("cache-manager-redis-store");
 const produto_module_1 = require("./produto/produto.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 const postgres_config_service_1 = require("./config/postgres.config.service");
 let AppModule = class AppModule {
 };
-AppModule = __decorate([
+exports.AppModule = AppModule;
+exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             usuario_module_1.UsuarioModule,
@@ -28,15 +29,21 @@ AppModule = __decorate([
                 useClass: postgres_config_service_1.PostgresConfigService,
                 inject: [postgres_config_service_1.PostgresConfigService],
             }),
-            common_1.CacheModule.register({
+            common_1.CacheModule.registerAsync({
                 isGlobal: true,
-                store: redisStore,
-                host: 'localhost',
-                port: 6379,
-                ttl: 10 * 1000,
+                useFactory: () => ({
+                    host: 'localhost',
+                    port: 6379,
+                    ttl: 10 * 1000,
+                }),
             }),
+        ],
+        providers: [
+            {
+                provide: core_1.APP_INTERCEPTOR,
+                useClass: common_1.CacheInterceptor,
+            },
         ],
     })
 ], AppModule);
-exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

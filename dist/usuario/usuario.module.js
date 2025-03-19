@@ -15,7 +15,8 @@ const usuario_controller_1 = require("./usuario.controller");
 const role_module_1 = require("../role/role.module");
 let UsuarioModule = class UsuarioModule {
 };
-UsuarioModule = __decorate([
+exports.UsuarioModule = UsuarioModule;
+exports.UsuarioModule = UsuarioModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity]),
@@ -26,5 +27,4 @@ UsuarioModule = __decorate([
         exports: [usuario_service_1.UsuarioService],
     })
 ], UsuarioModule);
-exports.UsuarioModule = UsuarioModule;
 //# sourceMappingURL=usuario.module.js.map

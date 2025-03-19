@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioEntity = void 0;
 const typeorm_1 = require("typeorm");
-const roleEntity_1 = require("../role/roleEntity");
+const roleEntity_1 = require("src/role/roleEntity");
 let UsuarioEntity = class UsuarioEntity {
 };
+exports.UsuarioEntity = UsuarioEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
@@ -51,8 +52,7 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], UsuarioEntity.prototype, "roles", void 0);
-UsuarioEntity = __decorate([
+exports.UsuarioEntity = UsuarioEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'usuarios' })
 ], UsuarioEntity);
-exports.UsuarioEntity = UsuarioEntity;
 //# sourceMappingURL=usuario.entity.js.map
