@@ -13,11 +13,10 @@ const produto_entity_1 = require("./produto.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const produto_service_1 = require("./produto.service");
 const produto_repository_1 = require("./repository/produto.repository");
-const fornecedor_module_1 = require("src/fornecedor/fornecedor.module");
+const fornecedor_module_1 = require("../fornecedor/fornecedor.module");
 let ProdutoModule = class ProdutoModule {
 };
-exports.ProdutoModule = ProdutoModule;
-exports.ProdutoModule = ProdutoModule = __decorate([
+ProdutoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([produto_entity_1.ProdutoEntity]), fornecedor_module_1.FornecedorModule],
         controllers: [produto_controller_1.ProdutoController],
@@ -25,4 +24,5 @@ exports.ProdutoModule = ProdutoModule = __decorate([
         exports: [produto_repository_1.ProdutoRepository],
     })
 ], ProdutoModule);
+exports.ProdutoModule = ProdutoModule;
 //# sourceMappingURL=produto.module.js.map
