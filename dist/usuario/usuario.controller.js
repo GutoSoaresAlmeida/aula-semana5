@@ -77,7 +77,6 @@ let UsuarioController = class UsuarioController {
         }
     }
 };
-exports.UsuarioController = UsuarioController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -106,8 +105,9 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "removeUsuario", null);
-exports.UsuarioController = UsuarioController = __decorate([
+UsuarioController = __decorate([
     (0, common_1.Controller)('/usuarios'),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], UsuarioController);
+exports.UsuarioController = UsuarioController;
 //# sourceMappingURL=usuario.controller.js.map

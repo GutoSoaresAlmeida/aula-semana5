@@ -15,8 +15,7 @@ const usuario_module_1 = require("./usuario/usuario.module");
 const postgres_config_service_1 = require("./config/postgres.config.service");
 let AppModule = class AppModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             usuario_module_1.UsuarioModule,
@@ -31,4 +30,5 @@ exports.AppModule = AppModule = __decorate([
         ],
     })
 ], AppModule);
+exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

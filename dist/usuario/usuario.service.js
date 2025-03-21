@@ -18,7 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const ListaUsuario_dto_1 = require("./dto/ListaUsuario.dto");
 const usuario_entity_1 = require("./usuario.entity");
-const roleEntity_1 = require("src/role/roleEntity");
+const roleEntity_1 = require("../role/roleEntity");
 let UsuarioService = class UsuarioService {
     constructor(usuarioRepository, roleRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -80,12 +80,12 @@ let UsuarioService = class UsuarioService {
         await this.usuarioRepository.delete(id);
     }
 };
-exports.UsuarioService = UsuarioService;
-exports.UsuarioService = UsuarioService = __decorate([
+UsuarioService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(usuario_entity_1.UsuarioEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(roleEntity_1.RoleEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository])
 ], UsuarioService);
+exports.UsuarioService = UsuarioService;
 //# sourceMappingURL=usuario.service.js.map
