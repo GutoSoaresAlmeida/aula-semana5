@@ -4,7 +4,7 @@ import { ListaProdutoDTO } from './dto/ListaProduto.dto';
 import { ProdutoEntity } from './produto.entity';
 import { Repository } from 'typeorm';
 import { AtualizaProdutoDTO } from './dto/AtualizaProduto.dto';
-import { FornecedorEntity } from 'src/Fornecedor/fornecedor.entity';
+import { FornecedorEntity } from '../Fornecedor/fornecedor.entity';
 
 @Injectable()
 export class ProdutoService {

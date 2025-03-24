@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import { CriaProdutoDTO, CaracteristicaProdutoDTO, ImagemProdutoDTO } from 'src/produto/dto/CriaProduto.dto'; //from '/../src/produto/dto/CriaProduto.dto';
+import { CriaProdutoDTO, CaracteristicaProdutoDTO, ImagemProdutoDTO } from '../../src/produto/dto/CriaProduto.dto'; //from '/../src/produto/dto/CriaProduto.dto';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('CriaProdutoDTO', () => {

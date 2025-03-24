@@ -10,7 +10,7 @@ import {
 import { ProdutoImagemEntity } from './produto-imagem.entity';
 import { ProdutoCaracteristicaEntity } from './produto-caracteristica.entity';
 import { ManyToOne } from 'typeorm';
-import { FornecedorEntity } from 'src/Fornecedor/fornecedor.entity';
+import { FornecedorEntity } from '../Fornecedor/fornecedor.entity';
 
 
 @Entity({ name: 'produtos' })
