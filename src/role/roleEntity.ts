@@ -17,3 +17,5 @@ export class RoleEntity {
     @ManyToMany(() => UsuarioEntity, usuario => usuario.roles)
     usuarios: UsuarioEntity[];
 }
+
+//

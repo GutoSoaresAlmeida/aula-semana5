@@ -13,6 +13,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const produto_module_1 = require("./produto/produto.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 const postgres_config_service_1 = require("./config/postgres.config.service");
+const fornecedor_module_1 = require("./fornecedor/fornecedor.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -20,6 +21,7 @@ AppModule = __decorate([
         imports: [
             usuario_module_1.UsuarioModule,
             produto_module_1.ProdutoModule,
+            fornecedor_module_1.FornecedorModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             }),
